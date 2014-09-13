@@ -1,0 +1,16 @@
+
+body {
+    background: #d3d3d3;
+    height: 100%
+  }
+
+#photo {
+    display: inline;
+    width: 500px
+  }
+
+/*#container {
+    overflow: hidden;
+    width: 880px;
+    margin: 20px auto
+}*/
