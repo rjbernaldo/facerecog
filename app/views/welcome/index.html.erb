@@ -1,10 +1,16 @@
-<h1>Hello World</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div id="header">
+<h1>KeyFace</h1>
+</div>
+<div id="pictures">
 <video id="video"></video>
-<button id="startbutton">Take photo</button>
+
 <canvas id="canvas"></canvas>
-
-
+</div>
+<div class="buttons">
+<button id="start_button">Take photo</button>
+<br>
 <%= form_tag("authenticate/auth_picture", method: "post") do %>
-  <%= submit_tag("Submit", id: "submit_button")%>
+  <%= submit_tag("Sign Up", id: "signup_button")%>
+  <%= submit_tag("Log in", id: "login_button")%>
 <% end %>
+</div>
