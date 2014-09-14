@@ -5,7 +5,7 @@ $(document).ready(function() {
     video        = document.querySelector('#video'),
     canvas       = document.querySelector('#canvas'),
     photo        = document.querySelector('#photo'),
-    startbutton  = document.querySelector('#startbutton'),
+    startbutton  = document.querySelector('#start_button'),
     width = 300,
     height = 300;
 
