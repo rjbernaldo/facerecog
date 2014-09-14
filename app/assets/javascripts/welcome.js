@@ -4,9 +4,9 @@ $(document).ready(function() {
       video        = document.querySelector('#video'),
       canvas       = document.querySelector('#canvas'),
       photo        = document.querySelector('#photo'),
-      startbutton  = document.querySelector('#startbutton'),
-      width = 500,
-      height = 500;
+      startbutton  = document.querySelector('#start_button'),
+      width = 400,
+      height = 400;
 
   navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -58,7 +58,7 @@ $(document).ready(function() {
     ev.preventDefault();
   }, false);
 
-  $('#submit_button').on('click', function(e){
+  $('#login_button').on('click', function(e){
     console.log(pic_data)
     e.preventDefault();
     request = $.ajax({
