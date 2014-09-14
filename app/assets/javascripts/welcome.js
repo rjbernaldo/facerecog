@@ -46,23 +46,24 @@ $(document).ready(function() {
 
     }, false);
 
-    function takepicture() {
+    // function takepicture() {
+    //   canvas.width = width;
+    //   canvas.height = height;
+    // }
+
+    // startbutton.addEventListener('click', function(ev){
+    //   takepicture();
+    //   ev.preventDefault();
+    // }, false);
+
+    $('#login_button').on('click', function(e){
       canvas.width = width;
       canvas.height = height;
       canvas.getContext('2d').drawImage(video, 0, 0, width, height);
       pic_data = canvas.toDataURL('image/png');
       pic_data = pic_data.slice(22)
-      photo.setAttribute('src', pic);
-    }
-
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
-      ev.preventDefault();
-    }, false);
-
-    $('#login_button').on('click', function(e){
-      console.log(pic_data)
       e.preventDefault();
+      // debugger
       request = $.ajax({
         url: 'authenticate/auth_picture',
         type: 'POST',

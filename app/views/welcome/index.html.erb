@@ -1,16 +1,34 @@
-<div id="header">
-<h1>KeyFace</h1>
-</div>
+  <div id="main">
+        <div id="menubar">
+       <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="index.html">Home</a></li>
+          <li><a href="examples.html">Settings</a></li>
+          <li><a href="page.html">How it Works</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    <div id="header">
+      <div id="logo">
+        <!-- class="logo_colour", allows you to change the colour of the text -->
+        <h1><%= image_tag 'hero_image.png' %></h1>
+      </div>
+    </div>
 <div id="pictures">
 <video id="video"></video>
-
-<canvas id="canvas"></canvas>
+<canvas id = "canvas" style = "display: none"></canvas>
 </div>
 <div class="buttons">
-<button id="start_button">Take photo</button>
-<br>
 <%= form_tag("authenticate/auth_picture", method: "post") do %>
   <%= submit_tag("Sign Up", id: "signup_button")%>
   <%= submit_tag("Log in", id: "login_button")%>
 <% end %>
 </div>
+    <div id="site_content">
+      <div id="content">
+      </div>
+    </div>
+    <div id="footer">
+      <p><a href="index.html">Home</a> | <a href="examples.html">Settings</a> | <a href="page.html">How it works</a> | <a href="contact.html">Contact Us</a></p>
+    </div>
+  </div>

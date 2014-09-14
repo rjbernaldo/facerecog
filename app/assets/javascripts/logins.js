@@ -8,6 +8,9 @@ $(document).ready(function(){
     })
 
     new_login.success(function(data){
+      $('#new_domain').val('');
+      $('#new_username').val('');
+      $('#new_password').val('');
       $('#login-table').append(data)
     })
     new_login.fail(function(data){
