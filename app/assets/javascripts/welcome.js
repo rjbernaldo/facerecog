@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  var pic_data
   var streaming = false,
       video        = document.querySelector('#video'),
       canvas       = document.querySelector('#canvas'),
@@ -47,8 +47,10 @@ $(document).ready(function() {
     canvas.width = width;
     canvas.height = height;
     canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    // var pic = canvas.toDataURL('image/png');
+    pic_data = canvas.toDataURL('image/png');
+    pic_data = pic_data.slice(22)
+    photo.setAttribute('src', pic);
   }
 
   startbutton.addEventListener('click', function(ev){
@@ -56,4 +58,22 @@ $(document).ready(function() {
     ev.preventDefault();
   }, false);
 
+  $('#submit_button').on('click', function(e){
+    console.log(pic_data)
+    e.preventDefault();
+    request = $.ajax({
+      url: 'authenticate/auth_picture',
+      type: 'POST',
+      data: { pic_url: pic_data }
+    })
+
+    request.success(function(data){
+      // console.log(data);
+      console.log("YAY")
+    })
+    request.fail(function(data){
+      console.log("Failure!");
+      // console.log(data)
+    })
+  })
 })();
