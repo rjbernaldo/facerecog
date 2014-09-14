@@ -13,13 +13,15 @@ class AuthenticateController < ApplicationController
       response.body
     end
 
+
     data_url = params[:pic_url]
     base=Base64.decode64(data_url)
-    File.open('web_image.png', 'wb') { |f| f.write(base)}
+    File.open('new_image.png', 'wb') { |f| f.write(base)}
 
-    puts postunirest('recognizefaces',{:file=>open('web_image.png','rb'),:indexes=>"nerf"})
-
-    redirect_to root_path
+    @face = postunirest('recognizefaces',{:file=>open('new_image.png','rb'),:indexes=>"#{ENV['DB_NAME']}"})
+    user_id = User.find_by_uniquename(@face['face'][0]["uniquename"]).id
+    session[:id] = user_id
+    render :json => user_id
   end
 
   def auth_extension
