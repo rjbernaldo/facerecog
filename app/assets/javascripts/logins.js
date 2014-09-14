@@ -1,7 +1,6 @@
 $(document).ready(function(){
   $('#new-login-form').on('submit', function(event){
     event.preventDefault();
-    debugger
     new_login = $.ajax({
       url: event.target.action,
       type: 'POST',

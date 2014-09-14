@@ -5,7 +5,7 @@ $(document).ready(function() {
     video        = document.querySelector('#video'),
     canvas       = document.querySelector('#canvas'),
     photo        = document.querySelector('#photo'),
-    startbutton  = document.querySelector('#startbutton'),
+    startbutton  = document.querySelector('#start_button'),
     width = 300,
     height = 300;
 
@@ -67,13 +67,14 @@ $(document).ready(function() {
         url: 'authenticate/auth_picture',
         type: 'POST',
         data: { pic_url: pic_data }
-        request.success(function(data){
-          console.log(data);
-          window.location.href = '/users/'+data
-        })
-        request.fail(function(data){
-          console.log("Failure!");
-        })
+      })
+
+      request.success(function(data){
+        window.location.href = '/users/'+data
+      })
+      request.fail(function(data){
+        alert("Bad Image! Press OK to try again")
+        location.reload()
       })
     })
   }
