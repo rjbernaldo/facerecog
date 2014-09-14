@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   post 'authenticate/auth_picture'
   post 'authenticate/auth_extension'
   root 'welcome#index'
-
+  resources :users do
+    resources :logins, only: :create
+  end
 end

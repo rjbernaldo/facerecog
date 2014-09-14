@@ -1,19 +1,20 @@
 $(document).ready(function() {
-  var pic_data
-  var streaming = false,
-      video        = document.querySelector('#video'),
-      canvas       = document.querySelector('#canvas'),
-      photo        = document.querySelector('#photo'),
-      startbutton  = document.querySelector('#start_button'),
-      width = 400,
-      height = 400;
+  if (location.pathname === "/"){
+    var pic_data
+    var streaming = false,
+    video        = document.querySelector('#video'),
+    canvas       = document.querySelector('#canvas'),
+    photo        = document.querySelector('#photo'),
+    startbutton  = document.querySelector('#startbutton'),
+    width = 300,
+    height = 300;
 
-  navigator.getMedia = ( navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia ||
-                         navigator.msGetUserMedia);
+    navigator.getMedia = ( navigator.getUserMedia ||
+     navigator.webkitGetUserMedia ||
+     navigator.mozGetUserMedia ||
+     navigator.msGetUserMedia);
 
-  navigator.getMedia(
+    navigator.getMedia(
     {
       video: true,
       audio: false
@@ -25,55 +26,55 @@ $(document).ready(function() {
         var vendorURL = window.URL || window.webkitURL;
         video.src = vendorURL.createObjectURL(stream);
       }
+      window.s = stream;
       video.play();
     },
     function(err) {
       console.log("An error occured! " + err);
     }
-  );
+    );
 
-  video.addEventListener('canplay', function(ev){
-    if (!streaming) {
-      height = video.videoHeight / (video.videoWidth/width);
-      video.setAttribute('width', width);
-      video.setAttribute('height', height);
-      canvas.setAttribute('width', width);
-      canvas.setAttribute('height', height);
-      streaming = true;
+    video.addEventListener('canplay', function(ev){
+      if (!streaming) {
+        height = video.videoHeight / (video.videoWidth/width);
+        video.setAttribute('width', width);
+        video.setAttribute('height', height);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
+        streaming = true;
+      }
+
+    }, false);
+
+    function takepicture() {
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+      pic_data = canvas.toDataURL('image/png');
+      pic_data = pic_data.slice(22)
+      photo.setAttribute('src', pic);
     }
-  }, false);
 
-  function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    // var pic = canvas.toDataURL('image/png');
-    pic_data = canvas.toDataURL('image/png');
-    pic_data = pic_data.slice(22)
-    photo.setAttribute('src', pic);
-  }
-
-  startbutton.addEventListener('click', function(ev){
+    startbutton.addEventListener('click', function(ev){
       takepicture();
-    ev.preventDefault();
-  }, false);
+      ev.preventDefault();
+    }, false);
 
-  $('#login_button').on('click', function(e){
-    console.log(pic_data)
-    e.preventDefault();
-    request = $.ajax({
-      url: 'authenticate/auth_picture',
-      type: 'POST',
-      data: { pic_url: pic_data }
+    $('#login_button').on('click', function(e){
+      console.log(pic_data)
+      e.preventDefault();
+      request = $.ajax({
+        url: 'authenticate/auth_picture',
+        type: 'POST',
+        data: { pic_url: pic_data }
+        request.success(function(data){
+          console.log(data);
+          window.location.href = '/users/'+data
+        })
+        request.fail(function(data){
+          console.log("Failure!");
+        })
+      })
     })
-
-    request.success(function(data){
-      // console.log(data);
-      console.log("YAY")
-    })
-    request.fail(function(data){
-      console.log("Failure!");
-      // console.log(data)
-    })
-  })
+  }
 })();
