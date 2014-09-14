@@ -3,4 +3,8 @@
 <video id="video"></video>
 <button id="startbutton">Take photo</button>
 <canvas id="canvas"></canvas>
-<!-- <img src="http://placekitten.com/g/320/261" id="photo" alt="photo"> -->
+
+
+<%= form_tag("authenticate/auth_picture", method: "post") do %>
+  <%= submit_tag("Submit", id: "submit_button")%>
+<% end %>
