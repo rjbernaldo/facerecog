@@ -39,28 +39,27 @@ $(document).ready(function() {
         height = video.videoHeight / (video.videoWidth/width);
         video.setAttribute('width', width);
         video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
         streaming = true;
       }
 
     }, false);
 
-    function takepicture() {
-      canvas.width = width;
-      canvas.height = height;
-      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-      pic_data = canvas.toDataURL('image/png');
-      pic_data = pic_data.slice(22)
-      photo.setAttribute('src', pic);
-    }
+    // function takepicture() {
+    //   canvas.width = width;
+    //   canvas.height = height;
+    // }
 
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
-      ev.preventDefault();
-    }, false);
+    // startbutton.addEventListener('click', function(ev){
+    //   takepicture();
+    //   ev.preventDefault();
+    // }, false);
 
     $('#login_button').on('click', function(e){
+
+      // canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+      pic_data = canvas.toDataURL('image/png');
+      pic_data = pic_data.slice(22)
+
       console.log(pic_data)
       e.preventDefault();
       request = $.ajax({
