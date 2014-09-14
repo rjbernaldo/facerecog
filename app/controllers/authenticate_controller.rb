@@ -38,7 +38,7 @@ class AuthenticateController < ApplicationController
     File.open('ext_image.png', 'wb') { |f| f.write(base) }
 
     respond_to do |format|
-      format.json { render json: postunirest('recognizefaces',{:file=>open('ext_image.png','rb'),:indexes=>"facesinthewild"}) }
+      format.json { render json: postunirest('recognizefaces',{:file=>open('ext_image.png','rb'),:indexes=>"nerf"}) }
     end
   end
 end

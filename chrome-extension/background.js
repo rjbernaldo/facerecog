@@ -1,5 +1,8 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.executeScript({
-    code: 'document.body.style.backgroundColor="red"'
-  })
-})
+  header.innerHTML = "Login to " + tab.title;
+  tab.executeScript({
+    code: "document.getElementsByTagName('html')[0].innerHTML; console.log(1)"
+  }, function(body) {
+    console.log(body);
+  });
+});
