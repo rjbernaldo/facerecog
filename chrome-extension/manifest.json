@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Face Password",
+  "description": "This extension logs you into your favorite websites using facial recognition",
+  "version": "1.0",
+  "permissions": [
+    "http://localhost:3000/",
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_icon": "key.png",
+    "default_popup": "popup.html",
+    "default_title": "Unlock website"
+  },
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": false
+  },
+  "options_page": "options.html"
+}
