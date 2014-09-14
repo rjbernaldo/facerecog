@@ -12,20 +12,17 @@ body {
 }
 
 #video {
-  margin-left: 335px;
-  border-radius: 15%;
+  margin-top:25px;
+  margin-left:38%;
+  border-radius: 15% 15% 15% 15%;
 }
 
-#canvas {
-  display: inline;
-  border-radius: 15%;
-}
 
 .buttons {
   text-align: center;
 }
 
-#start_button, #signup_button, #login_button {
+#signup_button, #login_button {
   margin: 5px;
   text-align: center;
   background-color:#ffffff;
