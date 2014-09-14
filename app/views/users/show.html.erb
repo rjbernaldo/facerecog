@@ -1,26 +1,59 @@
-<h1> Hello <%= @uniquename %> </h1>
-<table id = "login-table">
-  <tr>
-    <td style = "text-decoration: bold">Domain Name</td>
-    <td style = "text-decoration: bold">Username</td>
-    <td style = "text-decoration: bold">Password</td>
-  </tr>
-  <% @logins.each do |login| %>
-  <tr>
-    <td> <%= login.domain %> </td>
-    <td> <%= login.username %> </td>
-    <td> <%= login.password %> </td>
-  </tr>
-  <% end %>
-</table>
+<div id="main">
+  <div id="menubar">
+    <ul id="menu">
+      <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+      <li class="selected"><a href=<%= root_path %>>Home</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">How it Works</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+  <div id="header">
+  <div id="logo">
+    <%= image_tag 'hero_image.png' %>
+  </div>
+</div>
 
-<form action = "/users/<%=@id%>/logins" method = "post" id = "new-login-form">
-  <label for = "domain">Website: </label>
-  <input type = "text" name = "domain"><br>
-  <label for = "username">Username: </label>
-  <input type = "text" name = "username"><br>
-  <label for = "password">Password: </label>
-  <input type = "password" name = "password"><br>
-  <input type = "hidden" value = <%= @id %> name = "user_id">
-  <input type = "submit" value = "Submit">
-</form>
+<div id="site_content">
+  <div id="content">
+    <h1 class = "center"> Hello <%= @uniquename %> </h1>
+
+    <table id = "login-table">
+      <tr>
+        <td><h2>Domain Name</h2></td>
+        <td><h2>Username</h2></td>
+        <td><h2>Password</h2></td>
+      </tr>
+      <% @logins.each do |login| %>
+      <tr>
+        <td> <%= login.domain %> </td>
+        <td> <%= login.username %> </td>
+        <td> <%= login.password %> </td>
+      </tr>
+      <% end %>
+    </table>
+
+    <h2 class = "center"> Add a New Login </h2>
+
+    <form action = "/users/<%=@id%>/logins" method = "post" id = "new-login-form" class = "center">
+      <table id = "new-row">
+        <tr>
+          <td><h3 class = "center">Domain Name</h3></td>
+          <td><h3 class = "center">Username</h3></td>
+          <td><h3 class = "center">Password</h3></td>
+        </tr>
+        <tr>
+          <td> <input type = "text" name = "domain" class = "form_settings"> </td>
+          <td> <input type = "text" name = "username" class = "form_settings"> </td>
+          <td> <input type = "password" name = "password" class = "form_settings"> </td>
+        </tr>
+        <input type = "hidden" value = <%= @id %> name = "user_id" class = "form_settings"><br>
+      </table>
+      <input type = "submit" value = "Submit" class = "form_settings submit">
+    </form>
+  </div>
+</div>
+
+<div id="footer">
+  <p><a href=<%= root_path %>>Home</a> | <a href="#">Settings</a> | <a href="#">How it works</a> | <a href="#">Contact Us</a></p>
+</div>
