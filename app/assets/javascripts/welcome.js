@@ -39,6 +39,8 @@ $(document).ready(function() {
         height = video.videoHeight / (video.videoWidth/width);
         video.setAttribute('width', width);
         video.setAttribute('height', height);
+        canvas.setAttribute('width', width);
+        canvas.setAttribute('height', height);
         streaming = true;
       }
 
@@ -55,13 +57,13 @@ $(document).ready(function() {
     // }, false);
 
     $('#login_button').on('click', function(e){
-
-      // canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+      canvas.width = width;
+      canvas.height = height;
+      canvas.getContext('2d').drawImage(video, 0, 0, width, height);
       pic_data = canvas.toDataURL('image/png');
       pic_data = pic_data.slice(22)
-
-      console.log(pic_data)
       e.preventDefault();
+      // debugger
       request = $.ajax({
         url: 'authenticate/auth_picture',
         type: 'POST',
