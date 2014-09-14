@@ -2,36 +2,36 @@ $(document).ready(function() {
   if (location.pathname === "/"){
     var pic_data
     var streaming = false,
-        video        = document.querySelector('#video'),
-        canvas       = document.querySelector('#canvas'),
-        photo        = document.querySelector('#photo'),
-        startbutton  = document.querySelector('#startbutton'),
-        width = 500,
-        height = 500;
+    video        = document.querySelector('#video'),
+    canvas       = document.querySelector('#canvas'),
+    photo        = document.querySelector('#photo'),
+    startbutton  = document.querySelector('#startbutton'),
+    width = 300,
+    height = 300;
 
     navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
+     navigator.webkitGetUserMedia ||
+     navigator.mozGetUserMedia ||
+     navigator.msGetUserMedia);
 
     navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
-        }
-        window.s = stream;
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
+    {
+      video: true,
+      audio: false
+    },
+    function(stream) {
+      if (navigator.mozGetUserMedia) {
+        video.mozSrcObject = stream;
+      } else {
+        var vendorURL = window.URL || window.webkitURL;
+        video.src = vendorURL.createObjectURL(stream);
       }
+      window.s = stream;
+      video.play();
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
     );
 
     video.addEventListener('canplay', function(ev){
@@ -56,24 +56,24 @@ $(document).ready(function() {
     }
 
     startbutton.addEventListener('click', function(ev){
-        takepicture();
+      takepicture();
       ev.preventDefault();
     }, false);
 
-    $('#submit_button').on('click', function(e){
+    $('#login_button').on('click', function(e){
+      console.log(pic_data)
       e.preventDefault();
       request = $.ajax({
         url: 'authenticate/auth_picture',
         type: 'POST',
         data: { pic_url: pic_data }
-      })
-
-      request.success(function(data){
-        console.log(data);
-        window.location.href = '/users/'+data
-      })
-      request.fail(function(data){
-        console.log("Failure!");
+        request.success(function(data){
+          console.log(data);
+          window.location.href = '/users/'+data
+        })
+        request.fail(function(data){
+          console.log("Failure!");
+        })
       })
     })
   }
