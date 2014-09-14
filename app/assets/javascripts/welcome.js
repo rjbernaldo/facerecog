@@ -69,11 +69,11 @@ $(document).ready(function() {
       })
 
       request.success(function(data){
-        console.log(data);
         window.location.href = '/users/'+data
       })
       request.fail(function(data){
-        console.log("Failure!");
+        alert("Bad Image! Press OK to try again")
+        location.reload()
       })
     })
   }

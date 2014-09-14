@@ -19,6 +19,7 @@ class AuthenticateController < ApplicationController
 
     @face = postunirest('recognizefaces',{:file=>open('web_image.png','rb'),:indexes=>"#{ENV['DB_NAME']}"})
     user_id = User.find_by_uniquename(@face['face'][0]["uniquename"]).id
+    session[:id] = user_id
     render :json => user_id
   end
 
