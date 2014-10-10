@@ -46,16 +46,6 @@ $(document).ready(function() {
 
     }, false);
 
-    // function takepicture() {
-    //   canvas.width = width;
-    //   canvas.height = height;
-    // }
-
-    // startbutton.addEventListener('click', function(ev){
-    //   takepicture();
-    //   ev.preventDefault();
-    // }, false);
-
     $('#login_button').on('click', function(e){
       canvas.width = width;
       canvas.height = height;
