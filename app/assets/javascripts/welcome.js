@@ -53,7 +53,6 @@ $(document).ready(function() {
       pic_data = canvas.toDataURL('image/png');
       pic_data = pic_data.slice(22)
       e.preventDefault();
-      // debugger
       request = $.ajax({
         url: 'authenticate/auth_picture',
         type: 'POST',
